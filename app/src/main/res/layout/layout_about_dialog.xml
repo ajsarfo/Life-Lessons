@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="binding"
+            type="com.sarftec.lifelessons.application.binding.AboutDialogBinding" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:image="@{binding.appImage}"
+                app:shapeAppearanceOverlay="@style/CornerSize25Percent"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alert_dialog_title"
+                android:fontFamily="@font/raleway_bold"
+                android:textSize="20sp"
+                android:textColor="?attr/appToolbarTitleColor"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAlignment="textStart"
+            android:fontFamily="@font/raleway"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="@string/alert_dialog_message"
+            android:gravity="start" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp">
+            <TextView
+                android:id="@+id/more_apps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more_apps"
+                android:fontFamily="@font/raleway_bold"
+                android:textSize="14sp"
+                android:textColor="#52A0A2"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> binding.moreApps()}"/>
+            <TextView
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/alert_dialog_share_app"
+                android:fontFamily="@font/raleway_bold"
+                android:textSize="14sp"
+                android:textColor="#52A0A2"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> binding.share()}"
+                android:layout_marginLeft="16dp" />
+            <TextView
+                android:id="@+id/rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/alert_dialog_rate_app"
+                android:fontFamily="@font/raleway_bold"
+                android:textSize="14sp"
+                android:textColor="#FF3D00"
+                android:layout_marginStart="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{() -> binding.rate()}"
+                android:layout_marginLeft="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

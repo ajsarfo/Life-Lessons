@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Life Lessons</string>
+    <string name="alert_dialog_message">Check out the best collection of Life Lessons Quotes, Daily Inspirational Quotes and Daily Motivational Quotes!\n-Supported by Sarftec\n-Version 1.0</string>
+    <string name="alert_dialog_share_app">SHARE APP</string>
+    <string name="alert_dialog_rate_app">RATE APP</string>
+    <string name="alert_dialog_title">Lessons In Life Quotes</string>
+
+    <string name="nativeAdMessage">Ad</string>
+
+    <string name="appodeal_id">e6d13372a621ee5f57ff111540e07a370b615be018c29f5e</string>
+
+    <string name="app_share_message">"Hi! Take a look at this amazing app Lessons In Life. Its free!! You should get it too."</string>
+    <string name="more_apps">MORE APPS</string>
+    <string name="quote_image_background">Quote Image Background</string>
+    <string name="copy">Copy</string>
+    <string name="is_favorite">Is Favorite</string>
+    <string name="share">Share</string>
+    <string name="change_quote_background">Change Quote Background</string>
+
+    <string name="loading">Preparing Lessons…</string>
+    <string name="favorite_quotes">Favorite Quotes</string>
+    <string name="app_info">App Info</string>
+    <string name="no_favourite">No Favourite Quote Available</string>
+    <string name="at_least_a_quote">Select at least one quote as favourite</string>
+</resources>

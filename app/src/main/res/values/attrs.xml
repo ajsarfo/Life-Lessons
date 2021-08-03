@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="appBgColor"
+        format="color"/>
+    <attr name="appCategoryColor"
+        format="color"/>
+    <attr name="appRandomQuoteBgColor"
+        format="color"/>
+    <attr name="appRandomQuoteTextColor"
+        format="color"/>
+    <attr name="appRandomQuoteSizeColor"
+        format="color"/>
+    <attr name="appToolbarColor"
+        format="color"/>
+    <attr name="appListQuoteColor"
+        format="color"/>
+    <attr name="appCustomToolbarColor"
+        format="color"/>
+    <attr name="appToolbarTitleColor"
+        format="color"/>
+    <attr name="appCustomToolbarNavIconColor"
+        format="color"/>
+    <attr name="appCustomToolbarTitleColor"
+        format="color"/>
+</resources>
