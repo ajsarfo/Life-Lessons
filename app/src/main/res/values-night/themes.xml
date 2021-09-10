@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Lessons" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/black</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_dark</item>
+        <item name="colorOnPrimary">@color/color_on_primary</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
@@ -13,14 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
         <!-- App colors -->
-        <item name="appToolbarColor">?attr/colorPrimary</item>
+        <item name="appToolbarColor">@color/main_status</item>
         <item name="appCustomToolbarColor">@color/color_primary</item>
-        <item name="appToolbarTitleColor">@color/white</item>
-        <item name="appCustomToolbarTitleColor">@android:color/white</item>
+        <item name="appToolbarTitleColor">@color/main_on_primary</item>
+        <item name="appCustomToolbarTitleColor">@color/color_on_primary</item>
         <item name="appCustomToolbarNavIconColor">?attr/appCustomToolbarTitleColor</item>
-        <item name="appBgColor">?attr/backgroundColor</item>
         <item name="appRandomQuoteBgColor">#187E82</item>
-        <item name="appRandomQuoteTextColor">@color/color_category_text_gray</item>
+        <item name="appRandomQuoteTextColor">@color/random_category_quote_color</item>
         <item name="appRandomQuoteSizeColor">#ABABAB</item>
         <item name="appCategoryColor">?attr/colorOnSurface</item>
         <item name="appListQuoteColor">@color/white</item>

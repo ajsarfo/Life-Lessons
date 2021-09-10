@@ -5,9 +5,10 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.appodeal.ads.Appodeal
-import com.sarftec.lifelessons.application.ACTIVITY_BUNDLE
 import com.sarftec.lifelessons.application.adapter.ListItemAdapter
 import com.sarftec.lifelessons.application.dialog.LoadingDialog
+import com.sarftec.lifelessons.application.file.vibrate
+import com.sarftec.lifelessons.application.tools.PermissionHandler
 import com.sarftec.lifelessons.application.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -17,8 +18,24 @@ class ListActivity : BaseListActivity() {
 
     override val viewModel by viewModels<ListViewModel>()
 
+    private val permissionHandler by lazy {
+        PermissionHandler(this)
+    }
+
     private val listItemAdapter by lazy {
-        ListItemAdapter(dependency, viewModel)
+        ListItemAdapter(dependency, viewModel, permissionHandler) { quote, imageUri ->
+            vibrate()
+            navigateTo(
+                QuoteActivity::class.java,
+                bundle = Bundle().apply {
+                    putString(CATEGORY_SELECTED_NAME, quote.category)
+                    putInt(QUOTE_SELECTED_ID, quote.id)
+                    putInt(RANDOM_SEED, viewModel.getSeed())
+                    putString(NAVIGATION_ROOT, NAVIGATION_QUOTE_LIST)
+                    putString(QUOTE_SELECTED_IMAGE, imageUri.toString())
+                }
+            )
+        }
     }
 
     private val loadingDialog by lazy {
@@ -26,7 +43,7 @@ class ListActivity : BaseListActivity() {
     }
 
     override fun configureAdapter(recyclerView: RecyclerView) {
-        recyclerView.adapter  = listItemAdapter
+        recyclerView.adapter = listItemAdapter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +62,7 @@ class ListActivity : BaseListActivity() {
             listItemAdapter.submitData(it)
         }
         lifecycleScope.launchWhenCreated {
-            delay(1000)
+            delay(800)
             loadingDialog.dismiss()
         }
     }
@@ -53,6 +70,8 @@ class ListActivity : BaseListActivity() {
 
     override fun onResume() {
         super.onResume()
+        listItemAdapter.resetQuoteFavorites(modifiedQuoteList.entries)
+        modifiedQuoteList.clear()
         Appodeal.show(this, Appodeal.BANNER_VIEW)
     }
 }

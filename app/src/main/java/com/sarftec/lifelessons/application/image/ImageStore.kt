@@ -26,11 +26,18 @@ class ImageStore @Inject constructor(
         .map { it.toLowerCase(Locale.ENGLISH) }
         .toHashSet()
 
-    fun appImage() : Uri = "icon.jpg".toAssetUri(APP_FOLDER)
+    fun appImage(): Uri = "icon.jpg".toAssetUri(APP_FOLDER)
 
-    fun pictureImageUris(): List<Uri> = pictureImages.map { it.toAssetUri(PICTURE_IMAGE_FOLDER) }
+    fun placeholderImages(context: Context): List<Uri> {
+        return context
+            .assets
+            .list(PLACEHOLDER_IMAGE_FOLDER)!!
+            .map {
+                it.toAssetUri(PLACEHOLDER_IMAGE_FOLDER)
+            }
+    }
 
-    fun gradientImageUris(): List<Uri> = gradientImages.map { it.toAssetUri(GRADIENT_IMAGE_FOLDER) }
+    fun gradientImages(): List<Uri> = gradientImages.map { it.toAssetUri(GRADIENT_IMAGE_FOLDER) }
 
     fun randomGradientImage(): Uri {
         return gradientImages.random().toAssetUri(GRADIENT_IMAGE_FOLDER)

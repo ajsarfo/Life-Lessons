@@ -6,11 +6,20 @@
 
     <dimen name="main_toolbar_heading_height">32dp</dimen>
 
-    <dimen name="list_card_layout_height">360dp</dimen>
+    <dimen name="list_card_layout_height">440dp</dimen>
+    <dimen name="bottom_layout_item_size">21dp</dimen>
+
     <dimen name="list_card_elevation">6dp</dimen>
     <dimen name="list_card_corner_radius">10dp</dimen>
     <dimen name="bottom_layout_height">48dp</dimen>
-    <dimen name="bottom_layout_item_size">28dp</dimen>
 
     <dimen name="bottom_quote_layout_card_size">44dp</dimen>
+
+    <dimen name="preview_card_radius">8dp</dimen>
+    <dimen name="preview_card_elevation">2dp</dimen>
+    <dimen name="preview_image_card_size">68dp</dimen>
+    <dimen name="preview_image_icon_size">26dp</dimen>
+    <dimen name="preview_image_text_size">14sp</dimen>
+    <dimen name="preview_card_space">10dp</dimen>
+    <dimen name="preview_card_text_margin_bottom">4dp</dimen>
 </resources>

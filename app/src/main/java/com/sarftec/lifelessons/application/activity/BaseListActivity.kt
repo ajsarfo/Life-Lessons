@@ -1,13 +1,11 @@
 package com.sarftec.lifelessons.application.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sarftec.lifelessons.R
-import com.sarftec.lifelessons.application.enums.Destination
 import com.sarftec.lifelessons.application.viewmodel.BaseListViewModel
 import com.sarftec.lifelessons.databinding.ActivityListBinding
 
@@ -37,10 +35,5 @@ abstract class BaseListActivity : BaseActivity() {
             setHasFixedSize(true)
             configureAdapter(binding.recyclerView)
         }
-    }
-
-    override fun navigate(destination: Destination) {
-        startActivity(Intent(this, QuoteActivity::class.java))
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 }

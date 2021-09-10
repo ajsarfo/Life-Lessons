@@ -1,9 +1,9 @@
 package com.sarftec.lifelessons.data.repository
 
 import android.content.Context
-import com.sarftec.lifelessons.application.APP_CREATED
-import com.sarftec.lifelessons.application.editSettings
-import com.sarftec.lifelessons.application.readSettings
+import com.sarftec.lifelessons.application.file.APP_CREATED
+import com.sarftec.lifelessons.application.file.editSettings
+import com.sarftec.lifelessons.application.file.readSettings
 import com.sarftec.lifelessons.data.CATEGORY_QUOTES_FILE
 import com.sarftec.lifelessons.data.database.Database
 import com.sarftec.lifelessons.data.json.JsonQuoteList

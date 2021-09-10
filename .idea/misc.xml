@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/transparent_background.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/drawable/detail_bottom_icons_bg.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/drawable/font_card_shape.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/drawable/ic_background_change.xml" value="0.27760416666666665" />
+        <entry key="app/src/main/res/drawable/ic_check.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/drawable/ic_download.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/drawable/ic_love_grey.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/drawable/ic_star_filled.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/drawable/ic_star_unfilled.xml" value="0.22777777777777777" />
+        <entry key="app/src/main/res/drawable/ic_textalign_center.xml" value="0.16666666666666666" />
+        <entry key="app/src/main/res/drawable/ic_view.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/drawable/random_quote_background_shape.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/drawable/shape_read_font_a1.xml" value="0.16666666666666666" />
+        <entry key="app/src/main/res/drawable/text_panel.xml" value="0.24675925925925926" />
+        <entry key="app/src/main/res/layout/activity_image.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_list.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/activity_preview.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/activity_quote.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_quote_proxy.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_about_dialog.xml" value="0.14572649572649574" />
+        <entry key="app/src/main/res/layout/layout_activity_quote_bottom.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_color_card.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_font_card.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_image_item.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_list_content_holder.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_list_item.xml" value="0.26145833333333335" />
+        <entry key="app/src/main/res/layout/layout_loading_dialog.xml" value="0.22509057971014493" />
+        <entry key="app/src/main/res/layout/layout_loading_screen.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_main_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/layout_main_toolbar.xml" value="0.21452991452991452" />
+        <entry key="app/src/main/res/layout/layout_quote_pager_view.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_separator_item.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/layout_text_panel.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/native_ads_without_icon.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/menu/menu_drop_down.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/xml/provider_paths.xml" value="0.21452991452991452" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

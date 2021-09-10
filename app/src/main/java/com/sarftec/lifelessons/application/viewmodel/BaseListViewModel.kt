@@ -1,16 +1,15 @@
 package com.sarftec.lifelessons.application.viewmodel
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.sarftec.lifelessons.application.ApplicationScope
-import com.sarftec.lifelessons.application.Container
+import androidx.lifecycle.viewModelScope
 import com.sarftec.lifelessons.data.database.entity.Quote
+import com.sarftec.lifelessons.data.repository.Repository
+import kotlinx.coroutines.launch
 
 abstract class BaseListViewModel(
-    private val container: Container,
-    private val applicationScope: ApplicationScope,
+    protected val repository: Repository
 ) : ViewModel() {
 
     protected val _quotes = MutableLiveData<List<Quote>>()
@@ -22,16 +21,10 @@ abstract class BaseListViewModel(
     abstract fun fetch()
 
     fun saveItem(item: Quote) {
-        applicationScope.saveQuote(item)
-    }
-
-    fun persistCallbacks(onImageChanged: (Uri) -> Unit, onFavoriteChanged: (Boolean) -> Unit) {
-        container.onImageChanged = onImageChanged
-        container.onFavoriteChanged = onFavoriteChanged
-    }
-
-    fun persistItem(item: Quote, image: Uri) {
-        container.selectedQuote = item
-        container.selectedImageUri = image
+        viewModelScope.launch {
+            repository.database().quoteDao().update(
+                item.id, item.favorite
+            )
+        }
     }
 }

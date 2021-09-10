@@ -13,6 +13,10 @@ class ImageCache(private val dependency: Dependency) {
         }
     }
 
+    fun random() : Uri {
+       return dependency.imageStore().randomGradientImage()
+    }
+
     fun replace(quoteNumber: Int, uri: Uri) {
         imageMap[quoteNumber] = uri
     }

@@ -8,14 +8,42 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="color_primary">#0097A7</color>
-    <color name="color_light_primary">#84FFFF</color>
-    <color name="color_light_quote_card_background">#F6F6F6</color>
-    <color name="color_light_back_arrow">@android:color/white</color>
-
     <color name="color_category_text_gray">#696969</color>
     <color name="color_icon_grey">#6F6F6F</color>
 
+
+    <!-- better color support -->
+    <color name="color_primary">#0097A7</color>
+    <color name="color_on_primary">@color/white</color>
+    <color name="color_primary_dark">#00675b</color>
+
+    <color name="background">@color/white</color> <!--#fff-->
+
+    <color name="main_primary">@color/white</color>
+    <color name="main_on_primary">@color/black</color>
+    <color name="main_status">#FFFFFF</color>
+
+    <color name="random_category_quote_color">#919191</color>
+
     <color name="color_dark_scrim_foreground">#99000000</color>
     <color name="quote_view_foreground">#66000000</color>
+
+    <color name="color_image_scrim">#66000000</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="quote_bottom_pallete_color">#252525</color>
+
+    <color name="ripple_white">#96ffffff</color>
+    <color name="reader_text_color">#999999</color>
+    <color name="reader_text_highlightcolor">#ddd</color>
+
+    <color name="color27">#f4a14e</color>
+    <color name="textColor3">#999999</color>
+    <color name="color5">#55c4d0</color>
+    <color name="forth">#b1dc76</color>
+    <color name="fifth">#bd84d6</color>
+
+
+    <color name="image_preview_card_text_color">#4B346B</color>
+
 </resources>

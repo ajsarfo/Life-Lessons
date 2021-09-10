@@ -4,6 +4,7 @@ import android.net.Uri
 
 const val GRADIENT_IMAGE_FOLDER = "gradients"
 const val PICTURE_IMAGE_FOLDER = "images"
+const val PLACEHOLDER_IMAGE_FOLDER = "placeholders"
 const val APP_FOLDER = "app"
 
 fun String.toAssetUri(folder: String) : Uri {

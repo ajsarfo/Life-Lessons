@@ -7,6 +7,7 @@ import com.sarftec.lifelessons.application.file.vibrate
 import com.sarftec.lifelessons.BR
 import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.adapter.MainItemAdapter
+import com.sarftec.lifelessons.application.adapter.UriContainer
 import com.sarftec.lifelessons.application.enums.Destination
 import com.sarftec.lifelessons.application.file.bindable
 import com.sarftec.lifelessons.application.image.ImageHolder
@@ -22,7 +23,7 @@ class MainItemBinding(
 ) : BaseObservable() {
 
     @get:Bindable
-    var image: ImageHolder by bindable(ImageHolder.ImageDrawable(R.drawable.loading), BR.image)
+    var coilImage: UriContainer by bindable(UriContainer.Empty, BR.coilImage)
 
     fun init() {
         with(capsule.dependency.imageStore()) {
@@ -31,23 +32,13 @@ class MainItemBinding(
     }
 
     private fun loadImage(imageUri: Uri) {
-        with(capsule.dependency) {
-            coroutineScope().launch {
-                loadImageAsync(imageUri).collect { bitmap ->
-                    bitmap?.let {
-                        image = ImageHolder.ImageBitmap(it)
-                        throw CancellationException()
-                    }
-                }
-            }
-        }
+        coilImage = UriContainer.UriImage(capsule.dependency.imageLoader(), imageUri, R.drawable.loading)
     }
 
     fun onClick() {
         with(capsule) {
-            viewModel.persistItem(item)
             dependency.context().vibrate()
-            dependency.navigationListener().navigate(Destination.LIST)
+           capsule.onClick(item)
         }
     }
 }

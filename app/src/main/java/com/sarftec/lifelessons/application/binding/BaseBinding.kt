@@ -10,12 +10,10 @@ import com.sarftec.lifelessons.application.file.vibrate
 import com.sarftec.lifelessons.BR
 import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.Dependency
+import com.sarftec.lifelessons.application.adapter.UriContainer
 import com.sarftec.lifelessons.application.file.bindable
 import com.sarftec.lifelessons.application.image.ImageHolder
 import com.sarftec.lifelessons.data.database.entity.Quote
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 abstract class BaseBinding(
     protected val dependency: Dependency,
@@ -23,10 +21,10 @@ abstract class BaseBinding(
 ) : BaseObservable() {
 
     @get:Bindable
-    var image: ImageHolder by bindable(ImageHolder.Empty, BR.image)
+    var favoriteIcon: ImageHolder by bindable(getFavoriteDrawable(), BR.favoriteIcon)
 
     @get:Bindable
-    var favoriteIcon: ImageHolder by bindable(getFavoriteDrawable(), BR.favoriteIcon)
+    var coilImage: UriContainer by bindable(UriContainer.Empty, BR.coilImage)
 
     fun onCopy() {
         with(dependency.context()) {
@@ -52,21 +50,12 @@ abstract class BaseBinding(
     }
 
     protected fun changeImage(uri: Uri) {
-       with(dependency) {
-           coroutineScope().launch {
-               loadImageAsync(uri).collect { bitmap ->
-                   bitmap?.let {
-                       image = ImageHolder.ImageBitmap(it)
-                       throw CancellationException()
-                   }
-               }
-           }
-       }
+        coilImage = UriContainer.UriImage(dependency.imageLoader(), uri, allowHardware = false)
     }
 
     protected fun getFavoriteDrawable() : ImageHolder.ImageDrawable {
         return ImageHolder.ImageDrawable(
-            if(quote.favorite) R.drawable.ic_love_red else R.drawable.ic_love_grey
+            if(quote.favorite) R.drawable.ic_star_filled else R.drawable.ic_star_unfilled
         )
     }
 }

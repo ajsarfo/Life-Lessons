@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.sarftec.lifelessons.application.App_START_UP_TIMES
-import com.sarftec.lifelessons.application.readSettings
+import com.sarftec.lifelessons.application.file.App_START_UP_TIMES
+import com.sarftec.lifelessons.application.file.readSettings
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect

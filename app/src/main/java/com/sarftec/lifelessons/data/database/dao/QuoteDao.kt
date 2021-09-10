@@ -22,6 +22,9 @@ interface QuoteDao {
     @Query("select * from $QUOTE_TABLE where favorite = 1")
     suspend fun favorites() : List<Quote>
 
+    @Query("update $QUOTE_TABLE set favorite = :isFavorite where id = :id")
+    suspend fun update(id: Int, isFavorite: Boolean)
+
     @Update
     suspend fun update(quote: Quote)
 

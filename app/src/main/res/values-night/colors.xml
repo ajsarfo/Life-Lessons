@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#0097A7</color>
+    <color name="color_on_primary">@color/white</color>
+    <color name="color_primary_dark">#00675b</color>
+
+    <color name="background">#2d2d2d</color> <!--#fff-->
+
+    <color name="main_primary">@color/background</color>
+    <color name="main_on_primary">@color/color_on_primary</color>
+    <color name="main_status">@color/background</color>
+</resources>

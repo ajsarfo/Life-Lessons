@@ -1,4 +1,4 @@
-package com.sarftec.lifelessons.application
+package com.sarftec.lifelessons.application.file
 
 import android.content.Context
 import androidx.datastore.preferences.core.*
@@ -8,12 +8,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-val IS_DARK_MODE = booleanPreferencesKey("dark_mode")
-val SHOULD_VIBRATE = booleanPreferencesKey("vibrate")
-val SHOW_GRADIENT_BACKGROUND = booleanPreferencesKey("gradient")
-val SHOW_AUTHOR = booleanPreferencesKey("show_author")
-val SHOW_NOTIFICATIONS = booleanPreferencesKey("notifications")
-val REMAINDER_TIMER = intPreferencesKey("remainder_timer")
 val APP_CREATED = booleanPreferencesKey("app_created")
 val App_START_UP_TIMES = intPreferencesKey("app_start_up_times")
 

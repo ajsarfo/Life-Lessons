@@ -1,14 +1,14 @@
 package com.sarftec.lifelessons.application.binding
 
-import com.sarftec.lifelessons.application.file.vibrate
 import com.sarftec.lifelessons.application.adapter.Capsule
-import com.sarftec.lifelessons.application.enums.Destination
+import com.sarftec.lifelessons.application.file.toast
 import com.sarftec.lifelessons.data.database.entity.Quote
 
 class ListItemBinding(
     quote: Quote,
     private val position: Int,
-    private val capsule: Capsule
+    private val capsule: Capsule,
+    val onCaptureImage: () -> Unit
 ) : BaseBinding(capsule.dependency, quote) {
 
     fun init() {
@@ -17,25 +17,25 @@ class ListItemBinding(
 
     override fun onFavorite() {
         super.onFavorite()
-        capsule.viewModel.saveItem(quote)
+        capsule.apply {
+            dependency.context().toast(
+                if (quote.favorite)
+                    "Added to Favorites"
+                else "Removed from favorites"
+            )
+            capsule.viewModel.saveItem(quote)
+        }
+    }
+
+    fun switchImage() {
+        capsule.imageCache.apply {
+            val randImage = random()
+            replace(position, randImage)
+            changeImage(randImage)
+        }
     }
 
     fun onClick() {
-        with(capsule) {
-            dependency.context().vibrate()
-            viewModel.persistCallbacks(
-                { uri ->
-                    imageCache.replace(position, uri)
-                    changeImage(uri)
-                },
-                { isFavorite ->
-                    quote.favorite = isFavorite
-                    favoriteIcon = getFavoriteDrawable()
-                    viewModel.saveItem(quote)
-                }
-            )
-            viewModel.persistItem(quote, imageCache.get(position))
-            dependency.navigationListener().navigate(Destination.QUOTE)
-        }
+        capsule.onClick(quote, capsule.imageCache.get(position))
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,9 +9,6 @@
             type="com.sarftec.lifelessons.application.binding.MainToolbarBinding" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -49,7 +48,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/info"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_love_red"
+                app:srcCompat="@drawable/ic_favorite"
                 android:layout_marginRight="16dp"
                 android:contentDescription="@string/favorite_quotes" />
 
@@ -57,11 +56,13 @@
                 android:id="@+id/heading"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/raleway_bold"
                 android:gravity="start|center_vertical"
                 android:text="@string/app_name"
                 android:textAppearance="@style/ToolbarTextAppearance"
                 android:textColor="?attr/appToolbarTitleColor"
-                android:fontFamily="@font/raleway_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/favorite"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +80,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/CornerSize50Percent"
-            app:image="@{binding.appImage}" />
+            app:coilImage="@{binding.coilImage}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

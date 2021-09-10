@@ -4,6 +4,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.sarftec.lifelessons.BR
 import com.sarftec.lifelessons.application.Dependency
+import com.sarftec.lifelessons.application.adapter.UriContainer
 import com.sarftec.lifelessons.application.file.bindable
 import com.sarftec.lifelessons.application.image.ImageHolder
 import kotlinx.coroutines.CancellationException
@@ -17,18 +18,11 @@ class MainToolbarBinding(
 ) : BaseObservable() {
 
     @get:Bindable
-    var appImage : ImageHolder by bindable(ImageHolder.Empty, BR.appImage)
+    var coilImage: UriContainer by bindable(UriContainer.Empty, BR.coilImage)
 
     fun init() {
-        with(dependency) {
-            coroutineScope().launch {
-                loadImageAsync(imageStore().appImage()).collect { bitmap ->
-                    bitmap?.let {
-                        appImage = ImageHolder.ImageBitmap(it)
-                        throw CancellationException()
-                    }
-                }
-            }
+        dependency.apply {
+            coilImage = UriContainer.UriImage(imageLoader(), imageStore().appImage())
         }
     }
 

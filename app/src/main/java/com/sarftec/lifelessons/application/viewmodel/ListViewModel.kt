@@ -1,45 +1,47 @@
 package com.sarftec.lifelessons.application.viewmodel
 
 import android.os.Bundle
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.sarftec.lifelessons.application.ApplicationScope
-import com.sarftec.lifelessons.application.Container
-import com.sarftec.lifelessons.application.SELECTED_CATEGORY
-import com.sarftec.lifelessons.data.database.entity.Quote
+import com.sarftec.lifelessons.application.activity.BaseActivity
 import com.sarftec.lifelessons.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.random.Random
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val repository: Repository,
-    container: Container,
-    applicationScope: ApplicationScope
-) : BaseListViewModel(container, applicationScope) {
-
-    private var persistedBundle: Bundle? = null
+   repository: Repository,
+    private val stateHandle: SavedStateHandle
+) : BaseListViewModel(repository) {
 
     override fun getToolbarTitle(): String? {
-        return persistedBundle?.getString(SELECTED_CATEGORY)?.let {
-            "$it Lessons"
-        }
+        return stateHandle.get<Bundle>("bundle")?.getString(BaseActivity.CATEGORY_SELECTED_NAME)
+            ?.let {
+                "$it Lessons"
+            }
     }
 
     override fun fetch() {
+        if(_quotes.value != null) return
         viewModelScope.launch {
-            persistedBundle?.getString(SELECTED_CATEGORY)?.let {
-                _quotes.value = repository.database().quoteDao().quotes(it).shuffled()
+            stateHandle.get<Bundle>("bundle")?.let { bundle ->
+                bundle.getString(BaseActivity.CATEGORY_SELECTED_NAME)?.let {
+                    val fetchedQuotes = repository.database().quoteDao().quotes(it)
+                    val seed = (0 until 100).random()
+                    stateHandle.set("seed", seed)
+                    _quotes.value = fetchedQuotes.shuffled(Random(seed))
+                }
             }
         }
     }
 
-
-    fun setBundle(bundle: Bundle) {
-        persistedBundle = bundle
+    fun getSeed(): Int {
+        return stateHandle.get<Int>("seed") ?: 0
     }
 
-    fun getBundle(): Bundle? = persistedBundle
+    fun setBundle(bundle: Bundle) {
+        stateHandle.set("bundle", bundle)
+    }
 }

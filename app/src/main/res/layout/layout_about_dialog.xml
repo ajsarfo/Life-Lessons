@@ -19,7 +19,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                app:image="@{binding.appImage}"
+                app:coilImage="@{binding.coilImage}"
                 app:shapeAppearanceOverlay="@style/CornerSize25Percent"
                 android:scaleType="centerCrop"/>
             <TextView

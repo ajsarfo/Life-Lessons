@@ -12,9 +12,7 @@
     <string name="app_share_message">"Hi! Take a look at this amazing app Lessons In Life. Its free!! You should get it too."</string>
     <string name="more_apps">MORE APPS</string>
     <string name="quote_image_background">Quote Image Background</string>
-    <string name="copy">Copy</string>
     <string name="is_favorite">Is Favorite</string>
-    <string name="share">Share</string>
     <string name="change_quote_background">Change Quote Background</string>
 
     <string name="loading">Preparing Lessons…</string>
@@ -22,4 +20,17 @@
     <string name="app_info">App Info</string>
     <string name="no_favourite">No Favourite Quote Available</string>
     <string name="at_least_a_quote">Select at least one quote as favourite</string>
+
+    <string name="reader_alignment">Alignment</string>
+    <string name="reader_background">Background</string>
+    <string name="reader_text_size">Text size</string>
+
+    <string name="reader_theme">Text color</string>
+    <string name="reader_font">Font style</string>
+    <string name="reader_bg_opacity">Opacity</string>
+    <string name="copy">Copy</string>
+    <string name="change_image">Change Image</string>
+    <string name="share">Share</string>
+    <string name="save_quote">Save Quote</string>
+    <string name="bookmark">Bookmark</string>
 </resources>
