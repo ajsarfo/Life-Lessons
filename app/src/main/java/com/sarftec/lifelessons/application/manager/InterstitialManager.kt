@@ -11,6 +11,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class InterstitialManager(
     private val activity: AppCompatActivity,
+    private val interstitialId: String,
     private val networkManager: NetworkManager,
     private val adCountManager: AdCountManager,
     private val adRequest: AdRequest = AdRequest.Builder().build()
@@ -20,9 +21,9 @@ class InterstitialManager(
 
     private var interstitialAd: InterstitialAd? = null
 
-    fun load(id: String) {
+    fun load() {
         if (interstitialAd != null) return
-        InterstitialAd.load(activity, id, adRequest, getInterstitialLoadCallback())
+        InterstitialAd.load(activity, interstitialId, adRequest, getInterstitialLoadCallback())
     }
 
     private fun callCallback() {
@@ -31,13 +32,22 @@ class InterstitialManager(
     }
 
     fun showAd(callback: (() -> Unit)) {
-        if(networkManager.isNetworkAvailable()) {
+        if (networkManager.isNetworkAvailable()) {
             this.callback = callback
-            if (adCountManager.canShow())
-                interstitialAd?.show(activity) ?: callCallback()
-            else callCallback()
-        }
-        else callback()
+            when {
+                interstitialAd == null -> {
+                    load()
+                    callCallback()
+                    return
+                }
+                adCountManager.canShow() -> interstitialAd?.let {
+                    it.show(activity)
+                    load()
+                } ?: callCallback()
+
+                else -> callCallback()
+            }
+        } else callCallback()
     }
 
     private fun getFullScreenCallback(): FullScreenContentCallback {

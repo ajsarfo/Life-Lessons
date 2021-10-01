@@ -44,7 +44,7 @@ class ListActivity : BaseListActivity() {
     }
 
     override fun createAdCounterManager(): AdCountManager {
-        return AdCountManager(listOf(1, 3, 2, 2, 3, 4))
+        return AdCountManager(listOf(2, 3, 2, 2, 3, 4))
     }
 
     override fun configureAdapter(recyclerView: RecyclerView) {

@@ -13,6 +13,7 @@ import com.sarftec.lifelessons.application.binding.MainToolbarBinding
 import com.sarftec.lifelessons.application.dialog.AboutDialog
 import com.sarftec.lifelessons.application.dialog.LoadingDialog
 import com.sarftec.lifelessons.application.file.vibrate
+import com.sarftec.lifelessons.application.manager.AdCountManager
 import com.sarftec.lifelessons.application.manager.AppReviewManager
 import com.sarftec.lifelessons.application.manager.BannerManager
 import com.sarftec.lifelessons.application.viewmodel.MainViewModel
@@ -55,6 +56,10 @@ class MainActivity : BaseActivity() {
     }
 
     private val viewModel by viewModels<MainViewModel>()
+
+    override fun createAdCounterManager(): AdCountManager {
+        return AdCountManager(listOf(1, 2, 2, 2, 1, 4))
+    }
 
     fun configureToolbarLayout() {
         with(binding.toolbarLayout) {

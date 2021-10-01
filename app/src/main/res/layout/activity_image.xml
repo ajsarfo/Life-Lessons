@@ -36,7 +36,6 @@
         android:id="@id/main_banner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         tools:visibility="visible"
         android:orientation="vertical"
         tools:layout_height="50dp"

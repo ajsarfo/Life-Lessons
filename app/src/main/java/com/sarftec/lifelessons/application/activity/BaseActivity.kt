@@ -57,11 +57,12 @@ abstract class BaseActivity : AppCompatActivity() {
         if(!canShowInterstitial()) return
         interstitialManager = InterstitialManager(
             this,
+            getString(R.string.admob_interstitial_id),
             networkManager,
             createAdCounterManager(),
             adRequestBuilder
             )
-        interstitialManager?.load(getString(R.string.admob_interstitial_id))
+        interstitialManager?.load()
     }
 
     protected fun <T> navigateTo(
