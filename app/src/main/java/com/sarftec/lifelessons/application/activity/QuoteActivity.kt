@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.WindowManager
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,7 +13,6 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
-import com.appodeal.ads.Appodeal
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import com.sarftec.lifelessons.R
@@ -24,7 +22,8 @@ import com.sarftec.lifelessons.application.file.copy
 import com.sarftec.lifelessons.application.file.toBitmap
 import com.sarftec.lifelessons.application.file.toast
 import com.sarftec.lifelessons.application.file.vibrate
-import com.sarftec.lifelessons.application.manager.InterstitialManager
+import com.sarftec.lifelessons.application.manager.AdCountManager
+import com.sarftec.lifelessons.application.manager.BannerManager
 import com.sarftec.lifelessons.application.model.QuoteBottomPanel
 import com.sarftec.lifelessons.application.panel.TextPanelManager
 import com.sarftec.lifelessons.application.viewmodel.QuoteBackground
@@ -39,11 +38,7 @@ import java.io.File
 @AndroidEntryPoint
 class QuoteActivity : BaseActivity(), QuoteBottomPanel.Listener, ColorPickerDialogListener {
 
-    private val binding by lazy {
-        ActivityQuoteBinding.inflate(
-            LayoutInflater.from(this)
-        )
-    }
+    private lateinit var binding: ActivityQuoteBinding
 
     private val viewModel by viewModels<QuoteViewModel>()
 
@@ -53,14 +48,6 @@ class QuoteActivity : BaseActivity(), QuoteBottomPanel.Listener, ColorPickerDial
 
     private val quoteBottomPanel by lazy {
         QuoteBottomPanel(this)
-    }
-
-    private val interstitialManager by lazy {
-        InterstitialManager(
-            this,
-            networkManager,
-            listOf(2, 3, 4, 3)
-        )
     }
 
     private val textPanelManager by lazy {
@@ -81,15 +68,22 @@ class QuoteActivity : BaseActivity(), QuoteBottomPanel.Listener, ColorPickerDial
 
     private lateinit var imageResultLauncher: ActivityResultLauncher<Intent>
 
-    override fun onResume() {
-        super.onResume()
-        Appodeal.show(this, Appodeal.BANNER_VIEW)
+    override fun createAdCounterManager(): AdCountManager {
+        return AdCountManager(
+            listOf(2, 3, 4, 3)
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityQuoteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Appodeal.setBannerViewId(R.id.main_banner)
+        /*************** Admob Configuration ********************/
+        BannerManager(this, adRequestBuilder).attachBannerAd(
+            getString(R.string.admob_banner_quote),
+            binding.mainBanner
+        )
+        /**********************************************************/
         savedInstanceState ?: kotlin.run {
             intent.getBundleExtra(ACTIVITY_BUNDLE)?.let {
                 viewModel.setBundle(it)
@@ -234,7 +228,7 @@ class QuoteActivity : BaseActivity(), QuoteBottomPanel.Listener, ColorPickerDial
 
     override fun chooseBackground() {
         vibrate()
-        interstitialManager.showAd {
+        interstitialManager?.showAd {
             imageResultLauncher.launch(Intent(this, ImageActivity::class.java))
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
@@ -250,7 +244,7 @@ class QuoteActivity : BaseActivity(), QuoteBottomPanel.Listener, ColorPickerDial
                 if (compressed) outputStream.flush()
             }
         }
-        interstitialManager.showAd {
+        interstitialManager?.showAd {
             navigateTo(
                 PreviewActivity::class.java,
                 bundle = Bundle().apply {
@@ -272,7 +266,7 @@ class QuoteActivity : BaseActivity(), QuoteBottomPanel.Listener, ColorPickerDial
         vibrate()
         viewModel.changeCurrentQuoteFavorite()
         viewModel.getCurrentQuote()?.let {
-            toast(if(it.favorite) "Added to favorites" else "Removed from favorites")
+            toast(if (it.favorite) "Added to favorites" else "Removed from favorites")
         }
     }
 

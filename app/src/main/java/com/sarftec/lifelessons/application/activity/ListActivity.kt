@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.appodeal.ads.Appodeal
+import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.adapter.ListItemAdapter
 import com.sarftec.lifelessons.application.dialog.LoadingDialog
 import com.sarftec.lifelessons.application.file.vibrate
+import com.sarftec.lifelessons.application.manager.AdCountManager
 import com.sarftec.lifelessons.application.tools.PermissionHandler
 import com.sarftec.lifelessons.application.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,8 +43,16 @@ class ListActivity : BaseListActivity() {
         LoadingDialog(this)
     }
 
+    override fun createAdCounterManager(): AdCountManager {
+        return AdCountManager(listOf(1, 3, 2, 2, 3, 4))
+    }
+
     override fun configureAdapter(recyclerView: RecyclerView) {
         recyclerView.adapter = listItemAdapter
+    }
+
+    override fun getBannerId(): String {
+        return getString(R.string.admob_banner_list)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +81,5 @@ class ListActivity : BaseListActivity() {
         super.onResume()
         listItemAdapter.resetQuoteFavorites(modifiedQuoteList.entries)
         modifiedQuoteList.clear()
-        Appodeal.show(this, Appodeal.BANNER_VIEW)
     }
 }

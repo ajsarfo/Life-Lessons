@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sarftec.lifelessons.R
+import com.sarftec.lifelessons.application.manager.BannerManager
 import com.sarftec.lifelessons.application.viewmodel.BaseListViewModel
 import com.sarftec.lifelessons.databinding.ActivityListBinding
 
@@ -21,11 +22,19 @@ abstract class BaseListActivity : BaseActivity() {
 
     protected abstract fun configureAdapter(recyclerView: RecyclerView)
 
+    protected  abstract fun getBannerId() : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Setting status config
         statusColor(ContextCompat.getColor(this, R.color.color_primary))
         setContentView(binding.root)
+        /*************** Admob Configuration ********************/
+        BannerManager(this, adRequestBuilder).attachBannerAd(
+            getBannerId(),
+            binding.mainBanner
+        )
+        /**********************************************************/
         with(binding.listToolbar) {
             title = viewModel.getToolbarTitle()
             setNavigationOnClickListener { onBackPressed() }

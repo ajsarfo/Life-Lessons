@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">Life Lessons</string>
+
+    <string name="admob_test_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_test_interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
+
+    <string name="admob_banner_main">@string/admob_test_banner_id</string>
+    <string name="admob_banner_quote">@string/admob_test_banner_id</string>
+    <string name="admob_banner_preview">@string/admob_test_banner_id</string>
+    <string name="admob_banner_list">@string/admob_test_banner_id</string>
+    <string name="admob_banner_favorite">@string/admob_test_banner_id</string>
+    <string name="admob_banner_image">@string/admob_test_banner_id</string>
+
+    <string name="admob_interstitial_id">@string/admob_test_interstitial_id</string>
+
+    <!--
+    <string name="admob_interstitial_id">ca-app-pub-3112561146803951/7614234396</string>
+
+    <string name="admob_banner_main">ca-app-pub-3112561146803951/6519455205</string>
+    <string name="admob_banner_quote">ca-app-pub-3112561146803951/4631997779</string>
+    <string name="admob_banner_preview">ca-app-pub-3112561146803951/2425486898</string>
+    <string name="admob_banner_list">ca-app-pub-3112561146803951/1690989724</string>
+    <string name="admob_banner_favorite">ca-app-pub-3112561146803951/8160179241</string>
+    <string name="admob_banner_image">ca-app-pub-3112561146803951/7238829876</string>
+    -->
+
     <string name="alert_dialog_message">Check out the best collection of Life Lessons Quotes, Daily Inspirational Quotes and Daily Motivational Quotes!\n-Supported by Sarftec\n-Version 1.0</string>
     <string name="alert_dialog_share_app">SHARE APP</string>
     <string name="alert_dialog_rate_app">RATE APP</string>

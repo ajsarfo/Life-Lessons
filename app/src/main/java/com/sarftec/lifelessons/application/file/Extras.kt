@@ -18,7 +18,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import android.util.DisplayMetrics
-import android.view.WindowMetrics
 
 
 /*
@@ -55,6 +54,7 @@ fun View.toBitmap(
 /*
 Note: The image should exist inside the cache directory
  */
+
 fun Context.shareImage(imageName: String) {
     val adjustedUri =
         FileProvider.getUriForFile(
@@ -62,14 +62,14 @@ fun Context.shareImage(imageName: String) {
             "$packageName.provider",
             File(cacheDir, imageName)
         )
-    startActivity(
-        Intent().apply {
-            action = Intent.ACTION_SEND
-            type = "image/*"
-            putExtra(Intent.EXTRA_STREAM, adjustedUri)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        }
-    )
+    val intent = Intent(Intent.ACTION_SEND).apply {
+        action = Intent.ACTION_SEND
+        type = "image/png"
+        putExtra(Intent.EXTRA_STREAM, adjustedUri)
+        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
+    startActivity(Intent.createChooser(intent, "Share On..."))
 }
 
 fun Context.viewInGallery(imageUri: Uri) {

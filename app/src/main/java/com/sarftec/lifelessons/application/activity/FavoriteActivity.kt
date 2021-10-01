@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.adapter.ListItemAdapter
 import com.sarftec.lifelessons.application.tools.PermissionHandler
 import com.sarftec.lifelessons.application.viewmodel.FavoriteViewModel
@@ -34,6 +35,10 @@ class FavoriteActivity : BaseListActivity() {
 
     override fun configureAdapter(recyclerView: RecyclerView) {
         recyclerView.adapter = favoriteItemAdapter
+    }
+
+    override fun getBannerId(): String {
+        return getString(R.string.admob_banner_favorite)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

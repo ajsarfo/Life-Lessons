@@ -8,10 +8,13 @@ import android.view.View
 import android.view.WindowInsetsController
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
 import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.Dependency
 import com.sarftec.lifelessons.application.image.BitmapImageLoader
 import com.sarftec.lifelessons.application.image.ImageStore
+import com.sarftec.lifelessons.application.manager.AdCountManager
+import com.sarftec.lifelessons.application.manager.InterstitialManager
 import com.sarftec.lifelessons.application.manager.NetworkManager
 import com.sarftec.lifelessons.data.repository.Repository
 import javax.inject.Inject
@@ -34,6 +37,31 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected val dependency by lazy {
         Dependency(this)
+    }
+
+    protected val adRequestBuilder: AdRequest by lazy {
+        AdRequest.Builder().build()
+    }
+
+    protected var interstitialManager: InterstitialManager? = null
+
+    protected open fun canShowInterstitial() : Boolean = true
+
+    protected open fun createAdCounterManager() : AdCountManager {
+        return AdCountManager(listOf(1, 4, 3))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //Load interstitial if required by extending activity
+        if(!canShowInterstitial()) return
+        interstitialManager = InterstitialManager(
+            this,
+            networkManager,
+            createAdCounterManager(),
+            adRequestBuilder
+            )
+        interstitialManager?.load(getString(R.string.admob_interstitial_id))
     }
 
     protected fun <T> navigateTo(

@@ -21,6 +21,8 @@ class SplashActivity : BaseActivity() {
      ActivitySplashBinding.inflate(LayoutInflater.from(this))
     }
 
+    override fun canShowInterstitial(): Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

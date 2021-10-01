@@ -63,7 +63,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
 
     //App review dependency
-    implementation 'com.google.android.play:core:1.10.0'
+    implementation 'com.google.android.play:core:1.10.2'
 
 
     //Color picker dependency
@@ -71,10 +71,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
 
-    //Dependencies for appodeal
-    implementation 'com.appodeal.ads.sdk:core:2.10.1'
-    implementation 'com.appodeal.ads.sdk.networks:bidmachine:2.10.1.11'
-    implementation 'com.appodeal.ads.sdk.networks:admob:2.10.1.11'
+    //Dependencies for admob
+    implementation 'com.google.android.gms:play-services-ads:20.4.0'
 
     implementation("io.coil-kt:coil:1.2.2")
 

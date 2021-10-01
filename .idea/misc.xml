@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Sarfo/StudioProjects/Life-Lessons/app/src/main/res/layout/activity_image.xml" value="0.1140625" />
+        <entry key="..\:/Users/Sarfo/StudioProjects/Life-Lessons/app/src/main/res/layout/layout_list_content_holder.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/Sarfo/StudioProjects/Life-Lessons/app/src/main/res/layout/layout_separator_item.xml" value="0.12864583333333332" />
         <entry key="app/src/main/res/drawable-v24/transparent_background.xml" value="0.24675925925925926" />
         <entry key="app/src/main/res/drawable/detail_bottom_icons_bg.xml" value="0.24675925925925926" />
         <entry key="app/src/main/res/drawable/font_card_shape.xml" value="0.24675925925925926" />

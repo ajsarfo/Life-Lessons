@@ -23,20 +23,20 @@ fun <T : Any> bindable(value: T, tag: Int): Bindable<T> = Bindable(value, tag)
 
 @BindingAdapter("coilImage")
 fun loadImage(imageView: ImageView, container: UriContainer) {
-  when(container) {
-      is UriContainer.UriImage -> {
-          imageView.load(
-              container.imageUri,
-              container.imageLoader.imageLoader
-          ) {
-              allowHardware(container.allowHardware)
-              if(container.placeholder != -1) placeholder(container.placeholder)
-          }
-      }
-      else -> {
+    when (container) {
+        is UriContainer.UriImage -> {
+            imageView.load(
+                container.imageUri,
+                container.imageLoader.imageLoader
+            ) {
+                allowHardware(container.allowHardware)
+                placeholder(container.placeHolder)
+            }
+        }
+        else -> {
 
-      }
-  }
+        }
+    }
 }
 
 @BindingAdapter("image")
@@ -45,7 +45,8 @@ fun changeImage(imageView: ImageView, imageHolder: ImageHolder?) {
         when (it) {
             is ImageHolder.ImageBitmap -> imageView.setImageBitmap(it.image)
             is ImageHolder.ImageDrawable -> imageView.setImageResource(it.icon)
-            else -> { }
+            else -> {
+            }
         }
     }
 }

@@ -32,12 +32,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageToolbar" />
 
-    <com.appodeal.ads.BannerView
+    <LinearLayout
         android:id="@id/main_banner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
         tools:visibility="visible"
+        android:orientation="vertical"
         tools:layout_height="50dp"
         tools:background="@color/teal_200"
         app:layout_constraintBottom_toBottomOf="parent"

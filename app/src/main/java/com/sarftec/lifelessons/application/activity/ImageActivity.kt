@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.appodeal.ads.Appodeal
 import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.adapter.ImageAdapter
 import com.sarftec.lifelessons.application.dialog.LoadingScreen
 import com.sarftec.lifelessons.application.file.vibrate
+import com.sarftec.lifelessons.application.manager.BannerManager
 import com.sarftec.lifelessons.application.tools.ImageHandler
 import com.sarftec.lifelessons.databinding.ActivityImageBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,17 +48,16 @@ class ImageActivity : BaseActivity() {
         LoadingScreen(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Appodeal.show(this, Appodeal.BANNER_VIEW)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         statusColor(ContextCompat.getColor(this, R.color.color_primary))
-        //Show banner
-        Appodeal.setBannerViewId(R.id.main_banner)
+        /*************** Admob Configuration ********************/
+        BannerManager(this, adRequestBuilder).attachBannerAd(
+            getString(R.string.admob_banner_image),
+            binding.mainBanner
+        )
+        /**********************************************************/
         lifecycleScope.launchWhenCreated {
             scrimDialog.show()
             delay(1000)

@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.appodeal.ads.Appodeal
 import com.sarftec.lifelessons.R
 import com.sarftec.lifelessons.application.adapter.MainItemAdapter
 import com.sarftec.lifelessons.application.binding.AboutDialogBinding
@@ -15,7 +14,7 @@ import com.sarftec.lifelessons.application.dialog.AboutDialog
 import com.sarftec.lifelessons.application.dialog.LoadingDialog
 import com.sarftec.lifelessons.application.file.vibrate
 import com.sarftec.lifelessons.application.manager.AppReviewManager
-import com.sarftec.lifelessons.application.manager.InterstitialManager
+import com.sarftec.lifelessons.application.manager.BannerManager
 import com.sarftec.lifelessons.application.viewmodel.MainViewModel
 import com.sarftec.lifelessons.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,14 +25,6 @@ class MainActivity : BaseActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(
             LayoutInflater.from(this)
-        )
-    }
-
-    private val interstitialManager by lazy {
-        InterstitialManager(
-            this,
-            networkManager,
-            listOf(1, 3, 4, 3)
         )
     }
 
@@ -52,7 +43,7 @@ class MainActivity : BaseActivity() {
 
     private val mainItemAdapter by lazy {
         MainItemAdapter(dependency, viewModel) { item ->
-            interstitialManager.showAd {
+            interstitialManager?.showAd {
                 navigateTo(
                     ListActivity::class.java,
                     bundle = Bundle().apply {
@@ -89,13 +80,10 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         statusColor(ContextCompat.getColor(this, R.color.main_status))
         setStatusBarBackgroundLight()
-        /*************** Appodeal Configuration ********************/
-        Appodeal.setTesting(true)
-        Appodeal.setBannerViewId(R.id.main_banner)
-        Appodeal.initialize(
-            this,
-            getString(R.string.appodeal_id),
-            Appodeal.BANNER_VIEW or Appodeal.INTERSTITIAL
+        /*************** Admob Configuration ********************/
+        BannerManager(this, adRequestBuilder).attachBannerAd(
+            getString(R.string.admob_banner_main),
+            binding.mainBanner
         )
         /**********************************************************/
         loadingDialog.show()
@@ -119,15 +107,5 @@ class MainActivity : BaseActivity() {
 
     override fun onBackPressed() {
         finish()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Appodeal.show(this, Appodeal.BANNER_VIEW)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Appodeal.hide(this, Appodeal.BANNER_VIEW)
     }
 }
